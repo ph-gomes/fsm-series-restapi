@@ -1,8 +1,8 @@
 const Router = require("express").Router();
-const jwt = require("jsonwebtoken");
 
 const Series = require("../models/series");
 
+const jwt = require("jsonwebtoken");
 const jwtSecret = "asdasdqwecxv";
 
 Router.use(async (req, res, next) => {

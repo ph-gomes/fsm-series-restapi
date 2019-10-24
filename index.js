@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const path = require("path");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const series = require("./routes/series");
 const users = require("./routes/users");
@@ -15,6 +15,16 @@ const mongo = process.env.MONGODB || "mongodb://localhost/minhas-series-rest";
 const app = express();
 
 app.use(bodyParser.json({ extended: true }));
+
+/** Cross Origin Resource Sharing */
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      if (origin === "http://server2:8080") cb(null, true);
+      else cb(new Error("Not allowed by CORS"));
+    }
+  })
+);
 
 const createInitialUsers = async () => {
   const total = await User.countDocuments({});
