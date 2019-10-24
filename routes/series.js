@@ -1,5 +1,23 @@
 const Router = require("express").Router();
+const jwt = require("jsonwebtoken");
+
 const Series = require("../models/series");
+
+const jwtSecret = "asdasdqwecxv";
+
+Router.use(async (req, res, next) => {
+  const token =
+    req.headers["x-access-token"] || req.body.token || req.query.token;
+  if (token) {
+    try {
+      const payload = jwt.verify(token, jwtSecret);
+      if (payload.roles.indexOf("restrict") >= 0) next();
+      else res.send({ success: false, message: "without authorization" });
+    } catch (e) {
+      res.send({ success: false, message: "without authorization" });
+    }
+  } else res.send({ success: false, message: "without token" });
+});
 
 Router.get("/", async (req, res) => {
   const series = await Series.find({});
