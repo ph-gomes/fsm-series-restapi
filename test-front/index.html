@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <script>
+    $.get("http://server1:3000/series?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkYjEwMGIwZGExMWQ5NDYxY2Q1NmY1MSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlcyI6WyJyZXN0cmljdCIsImFkbWluIl0sImlhdCI6MTU3MTkyMTIxMX0.4TVYPgHYBMtr0rSEtVmai88auuaQb6XpKNO6ktmaLfY", function (data) {
+      alert("Data Loaded");
+      console.log(data)
+    });
+  </script>
+</body>
+
+</html>
